@@ -2,5 +2,5 @@
 
 ## Tasks
 
-- implement views in measurements application.
+ - [ ] implement views in measurements application.
 
