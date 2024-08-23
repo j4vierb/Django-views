@@ -1,1 +1,1 @@
-# Taller 1/2 - Django
+# Django views assignment
