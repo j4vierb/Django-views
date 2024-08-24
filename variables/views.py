@@ -17,7 +17,7 @@ def variables_view(request):
     id = request.GET.get('id', None)
     if id:
       variable_dto = variables_logic.get_variable(id)
-      variable = serializers.serialize('json', [variable_dto,])
+      variable = serializers.serialize('json', [variable_dto])
       return HttpResponse(variable, 'application/json')
     else:
       variables_dto = variables_logic.get_variables()
@@ -27,7 +27,7 @@ def variables_view(request):
   if request.method == 'POST':
     # donde se hacen las validaciones?
     variable_dto = variables_logic.create_variable(json.loads(request.body))
-    variable = serializers.serialize('json', [variable_dto,])
+    variable = serializers.serialize('json', [variable_dto])
     return HttpResponse(variable, 'application/json')
 
 @csrf_exempt
@@ -39,6 +39,10 @@ def variable_view(request, pk):
   
   if request.method == 'PUT':
     variable_dto = variables_logic.update_variable(pk, json.loads(request.body))
-    variable = serializers.serialize('json', [variable_dto,])
+    variable = serializers.serialize('json', [variable_dto])
 
     return HttpResponse(variable, 'application/json')
+  
+  if request.method == 'DELETE':
+    variables_logic.delete_variable(pk)
+    return HttpResponse(status=204)

@@ -11,6 +11,10 @@ def get_variable(var_pk):
     variable = Variable.objects.get(pk=var_pk)
     return variable
 
+def get_variable_by_name(var_name):
+    variable = Variable.objects.get(name=var_name)
+    return variable
+
 def update_variable(var_pk, new_var):
     variable = get_variable(var_pk)
     variable.name = new_var['name']
@@ -21,3 +25,7 @@ def create_variable(new_var):
     variable = Variable(name=new_var['name'])
     variable.save()
     return variable
+
+def delete_variable(var_pk):
+    variable = get_variable(var_pk)
+    variable.delete()
